@@ -8,11 +8,10 @@ function createDiv(className) {
 }
 
 function createButton(btn) {
-  const element = document.createElement("input");
+  const element = createDiv(btn.className);
   element.type = "button";
   element.id = btn.id;
-  element.className = btn.className;
-  element.value = btn.value;
+  element.innerText = btn.value;
   return element;
 }
 
@@ -125,8 +124,16 @@ function getElement(id) {
 }
 window.onload = function () {
   container = getElement("progress-container");
+  /**
+   * Creating Progress with 5 seconds Interval
+   */
   createProgressBar(5000);
+
   getElement("add").addEventListener("click", function () {
-    createProgressBar(5000);
+    const input = getElement("intervalInput");
+    if (!input) return;
+    const interval = input.value;
+    if (!interval || interval === 0) return;
+    createProgressBar(interval * 1000);
   });
 };
