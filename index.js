@@ -1,12 +1,19 @@
 let container = null;
 let count = 0;
+/**
+ * Creates Div element
+ * @param {} className
+ */
 
 function createDiv(className) {
   const div = document.createElement("div");
   div.className = className;
   return div;
 }
-
+/**
+ * Creates a Div for Button
+ * @param {*} btn
+ */
 function createButton(btn) {
   const element = createDiv(btn.className);
   element.type = "button";
@@ -14,22 +21,30 @@ function createButton(btn) {
   element.innerText = btn.value;
   return element;
 }
-
+/**
+ * Returns Container to hold Progress Bar
+ */
 function getProgressWrapper() {
   const progressWrapper = createDiv("progress-wrapper");
   return progressWrapper;
 }
-
+/**
+ * Returns Wrapper of Progress Bar wrapper
+ */
 function getProgressBar() {
   return createDiv("progress-bar");
 }
-
+/**
+ * Returns Progress Bar
+ */
 function getProgress() {
   const progress = createDiv("progress");
   progress.id = "progress" + count;
   return progress;
 }
-
+/**
+ * Creating CTA's
+ */
 function getStartBtn() {
   return createButton({
     id: "start" + count,
@@ -51,7 +66,11 @@ function getResetBtn() {
     value: "Restart",
   });
 }
-function createProgressBar(duration) {
+/**
+ * Render Progress Bar with CTA;
+ * @param {*} duration
+ */
+function renderProgressBar(duration) {
   count += 1;
   const wrapper = getProgressWrapper();
   const bar = getProgressBar();
@@ -63,6 +82,10 @@ function createProgressBar(duration) {
   let pause = false;
   let pauseTime = null;
   let delta = 0;
+  /**
+   * Animating Using RequestAnimationFrame for Better experiencing
+   * @param {*} time
+   */
   function step(time) {
     if (pause) {
       return;
@@ -81,7 +104,9 @@ function createProgressBar(duration) {
       delta = 0;
     }
   }
-
+  /**
+   * Attaching Listeners
+   */
   start.addEventListener("click", function () {
     if (pause) {
       requestAnimationFrame(step);
@@ -127,13 +152,13 @@ window.onload = function () {
   /**
    * Creating Progress with 5 seconds Interval
    */
-  createProgressBar(5000);
+  renderProgressBar(5000);
 
   getElement("add").addEventListener("click", function () {
     const input = getElement("intervalInput");
     if (!input) return;
     const interval = input.value;
     if (!interval || interval === 0) return;
-    createProgressBar(interval * 1000);
+    renderProgressBar(interval * 1000);
   });
 };
