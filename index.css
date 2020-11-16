@@ -1,3 +1,30 @@
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+}
+.progress-bar {
+  width: 200px;
+}
 .progress {
-  border: 1px solid red;
+  height: 17px;
+  background: #0f0;
+  text-align: center;
+  width: 0px;
+  border-radius: 20px;
+}
+.progress-wrapper {
+  display: flex;
+}
+
+.start {
+  margin: 0px 10px;
+}
+.config-container {
+  margin: 10px;
 }

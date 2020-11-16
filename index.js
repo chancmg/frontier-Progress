@@ -1,22 +1,26 @@
-function start() {
-  var duration = 5000;
-  console.log("duration: ", duration);
-  var st = window.performance.now();
-  window.requestAnimationFrame(function step(time) {
-    console.log("time: ", time);
-    var diff = Math.round(time - st),
-      val = Math.round((diff / duration) * 100);
-    val = val > 100 ? 100 : val;
-    const progress = document.getElementById("progress");
-    progress.style.width = val + "px";
-    progress.style.textContent = val + "%";
-    if (diff < duration) {
-      window.requestAnimationFrame(step);
-    }
-  });
+var start = null;
+var progress = 0;
+var st;
+var ele;
+function step(time) {
+  var diff = Math.round(time - st),
+    val = Math.round((diff / duration) * 100);
+  val = val > 100 ? 100 : val;
+  ele.style.width = val * 2 + "px";
+  if (diff < duration) {
+    requestAnimationFrame(step);
+  }
 }
-
-window.onload = () => {
-  console.log("Reached");
-  start();
+window.onload = function () {
+  ele = document.getElementById("progress");
+  document.getElementById("run").addEventListener(
+    "click",
+    function () {
+      ele.style.width = "0px";
+      duration = 3000;
+      st = window.performance.now();
+      requestAnimationFrame(step);
+    },
+    false
+  );
 };
