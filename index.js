@@ -158,7 +158,7 @@ window.onload = function () {
     const input = getElement("intervalInput");
     if (!input) return;
     const interval = input.value;
-    if (!interval || interval === 0) return;
+    if (!interval || interval <= 0) return;
     renderProgressBar(interval * 1000);
   });
 };
