@@ -20,6 +20,7 @@ body {
 }
 .progress-wrapper {
   display: flex;
+  margin: 15px 0px;
 }
 
 .start {
